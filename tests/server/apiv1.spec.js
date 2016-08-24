@@ -18,6 +18,7 @@
         });
 
     	it('with valid zip code', function(done) {
+				this.timeout(20000);
     		rqst(app).get('/api/v1/getWeather?zip=78613')
     		.end(function(err, res) {
                     assert.equal(res.status, 200);
@@ -27,6 +28,7 @@
     	});
 
     	it('with without zip code', function(done) {
+				this.timeout(20000);
     		rqst(app).get('/api/v1/getWeather')
     		.end(function(err, res) {
                     assert.equal(res.status, 400);
@@ -35,6 +37,7 @@
     	});
 
     	it('with invalid zip code', function(done) {
+				this.timeout(20000);
     		rqst(app).get('/api/v1/getWeather?zip=00000')
     		.end(function(err, res) {
                     assert.equal(res.status, 200);
@@ -43,6 +46,7 @@
     	});
 
     	it('with incomplete zip code', function(done) {
+				this.timeout(20000);
     		rqst(app).get('/api/v1/getWeather?zip=+++')
     		.end(function(err, res) {
                     assert.equal(res.status, 200);
