@@ -18,7 +18,7 @@
         });
 
     	it('with valid zip code', function(done) {
-				this.timeout(20000);
+				this.timeout(50000);
     		rqst(app).get('/api/v1/getWeather?zip=78613')
     		.end(function(err, res) {
                     assert.equal(res.status, 200);
@@ -28,7 +28,7 @@
     	});
 
     	it('with without zip code', function(done) {
-				this.timeout(20000);
+				this.timeout(50000);
     		rqst(app).get('/api/v1/getWeather')
     		.end(function(err, res) {
                     assert.equal(res.status, 400);
@@ -37,7 +37,7 @@
     	});
 
     	it('with invalid zip code', function(done) {
-				this.timeout(20000);
+				this.timeout(50000);
     		rqst(app).get('/api/v1/getWeather?zip=00000')
     		.end(function(err, res) {
                     assert.equal(res.status, 200);
@@ -46,7 +46,7 @@
     	});
 
     	it('with incomplete zip code', function(done) {
-				this.timeout(20000);
+				this.timeout(50000);
     		rqst(app).get('/api/v1/getWeather?zip=+++')
     		.end(function(err, res) {
                     assert.equal(res.status, 200);
@@ -54,8 +54,13 @@
                 });
     	});
     });
-    
-    if(!process.env.FAKE_COVERAGE_REGRESSION){
+
+		if(process.env.FAKE_COVERAGE_REGRESSION === "true"){
+			//
+			// create coverage regression in DRA
+			//
+		}
+    else{
 	    describe('Get Weather 2', function() {
 	
 	    	before(function() {
@@ -63,6 +68,7 @@
 	        });
 	
 	    	it('with valid zip code', function(done) {
+					this.timeout(50000);
 	    		rqst(app).get('/api/v1/getWeather2?zip=78613')
 	    		.end(function(err, res) {
 	                    assert.equal(res.status, 200);
@@ -72,6 +78,7 @@
 	    	});
 	
 	    	it('with without zip code', function(done) {
+					this.timeout(50000);
 	    		rqst(app).get('/api/v1/getWeather2')
 	    		.end(function(err, res) {
 	                    assert.equal(res.status, 400);
@@ -80,6 +87,7 @@
 	    	});
 	
 	    	it('with invalid zip code', function(done) {
+					this.timeout(50000);
 	    		rqst(app).get('/api/v1/getWeather2?zip=00000')
 	    		.end(function(err, res) {
 	                    assert.equal(res.status, 200);
@@ -88,6 +96,7 @@
 	    	});
 	
 	    	it('with incomplete zip code', function(done) {
+					this.timeout(50000);
 	    		rqst(app).get('/api/v1/getWeather2?zip=+++')
 	    		.end(function(err, res) {
 	                    assert.equal(res.status, 200);
